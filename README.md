@@ -1,4 +1,4 @@
-# PID Controller: Simple Explanation
+# PID Controller: Simplest Explanation NGL!
 ## Chapter 1: Introduction to PID Controllers
 $$
 u(t) = K_p e(t) + K_i \int_0^t e(\tau) d\tau + K_d \frac{d}{dt}e(t)
