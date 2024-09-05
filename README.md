@@ -1,2 +1,8 @@
-# PID-Controller-for-Omniwheel-Base-Four
-This repository implements a PID controller for a four-wheeled omniwheel base, designed to ensure smooth, precise multi-directional movement. The controller dynamically adjusts wheel speeds, correcting errors in real time to optimize stability and responsiveness for robotic applications requiring advanced mobility.
+# PID Controller for Omniwheel Base Four
+##Chapter 1: What is PID Controller?
+##Chapter 2: The Usage of PID
+##Chapter 3: How variable P affects the system
+##Chapter 4: How variable I affects the system
+##Chapter 5: How variable D affects the system
+##Chapter 6: Understanding the Code
+##Resources
