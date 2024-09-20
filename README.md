@@ -29,7 +29,32 @@ $K_p$ is the <b>P</b> gain, which you can change (this variable is customizable)
 
 ## Chapter 4: The Effect of the Integral (I) Variable 🔄
 
-Why do we need another variable to think of? Isn’t <b>P</b> good enough? Well, it is not always the case. Sometimes more sophisticated systems need more complex tools. 🤯
+Why do we need another variable to think of? Isn’t **P** good enough? Well, it is not always the case. Sometimes more sophisticated systems need more complex tools. 🤯
+
+Let's say when you went to your friend's house, your friend wanted to make an autonomous quadcopter drone that hovers at 50 meters. Therefore, you wanted to help your friend's project by composing the algorithm for it. 🚁
+
+When you start flying, your drone is not at 50 meters yet. The error, $e(t)$, is the difference between the current height and 50 meters. So, the control output, $u(t)$, is high because the error is large. This helps the drone to ascend quickly. 
+
+As the drone gets closer to 50 meters, $e(t)$ decreases. This means $u(t)$ decreases too. When the drone reaches 50 meters, $e(t)$ becomes zero, and $u(t)$ also drops to zero. Zero control value mean there's no value being input into actuator. This could lead to the drone stopping to running and drop down. 📉 Therefore, after a few second the feedback will notify the system that there's a difference between desired value of height with the actual value or $e(t)$ isn't zero, that'll resulting in $u(t)$'s value, and the cycle will go on and on. This might lead to the drone rising again and dropping back down, creating oscillations. 🛫🔄
+
+Now, let’s see why we need a Proportional-Integral (PI) controller:
+- **Prevent Oscillations**: The PI controller adds an Integral (I) component to the mix. Imagine the Integral action as a gentle reminder that keeps track of all the small errors over time. If the drone drifts slightly below 50 meters, the Integral action starts to accumulate this error. Over time, this accumulated error will influence $u(t)$ to correct the drift and stabilize the hover. 🕒🛠️
+- **Eliminate Steady State Error**: Let's make a little abstraction. We don't know the drone yet, but for the purpose of example, the motor's drone needed exactly 100 RPM for the drone to hover. Therefore we have to make the output equal 100 RPM to make the drone hover. Here's a little problem if we use a P controller:
+  - *error x **p** gain = motor speed*
+  - *50 m x 2 = 100 RPM*
+  - *20 m x 5 = 100 RPM*
+  - *10 m x 10 = 100 RPM*
+  - *1 m x 100 = 100 RPM*
+
+  Somehow, to maintain at 100 RPM the error will still exist. This is called **steady-state error**, the persistent difference between the desired value and the actual value. Imagine this as a memory that remembers all the small errors over time. If the drone has consistently not reaching the target speed, this memory accumulates this error. Over time, this accumulated error leads to a gradual adjustment to correct the persistent shortfall. ⚙️📉
+
+ If you only use Proportional control, you adjust based on current error. But if there’s a tiny, constant error, the Proportional controller might not fix it completely because it only responds to the present error, not the historical or past error. This means you’ll still have a small, ongoing difference between the desired and actual speeds.
+ 
+ The Integral part of the PI controller keeps track of the total accumulated error over time. If there’s a steady, small error, the Integral action gradually increases its correction to eliminate this error. It makes sure that even the smallest, persistent difference is adjusted so that the drone reaches and stays at the exact desired speed or height.
+ 
+$$
+u(t) = K_p e(t) + K_i \int_0^t e(\tau) d\tau
+$$
 
 ## Chapter 5: The Effect of the Derivative (D) Variable 🧮
 
