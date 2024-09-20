@@ -46,7 +46,7 @@ Now, let’s see why we need a Proportional-Integral (PI) controller:
   - *10 m x 10 = 100 RPM*
   - *1 m x 100 = 100 RPM*
 
-  Somehow, to maintain at 100 RPM the error will still exist. This is called **steady-state error**, the persistent difference between the desired value and the actual value. Imagine this as a memory that remembers all the small errors over time. If the drone has consistently not reaching the target speed, this memory accumulates this error. Over time, this accumulated error leads to a gradual adjustment to correct the persistent shortfall. ⚙️📉
+  Somehow, to maintain at 100 RPM the error will still exist. This is called **steady-state error**, the persistent difference between the desired value and the actual value. Imagine the **I** variable as a memory that remembers all the small errors over time. If the drone has consistently not reaching the target speed, this memory accumulates this error. Over time, this accumulated error leads to a gradual adjustment to correct the persistent shortfall. ⚙️📉
 
  If you only use Proportional control, you adjust based on current error. But if there’s a tiny, constant error, the Proportional controller might not fix it completely because it only responds to the present error, not the historical or past error. This means you’ll still have a small, ongoing difference between the desired and actual speeds.
  
